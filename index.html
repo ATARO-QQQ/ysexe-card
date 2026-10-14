@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>横浜創英中学･高等学校 生徒会執行部｜名刺ジェネレーター</title>
+        <meta name="description" content="横浜創英中学･高等学校 生徒会執行部の4号名刺を作成・印刷するためのジェネレーター。">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="brand-logo"><img src="https://ataro-qqq.github.io/ysexe-card/ysexe-rogo.png" alt="横浜創英のロゴ"></div>
+                    <div>
+                        <h1 class="brand-title">横浜創英中学･高等学校 生徒会執行部</h1>
+                        <div class="brand-subtitle">SOEI STUDENT COUNCIL · CARD STUDIO</div>
+                    </div>
+                </div>
+                <div class="header-note"><span class="dot"></span><span>自由な発想を、伝わるかたちに。</span></div>
+            </div>
+            <div class="header-rule"></div>
+        </header>
+        <main>
+            <section class="intro">
+                <div>
+                    <p class="eyebrow">Student Council / Identity Design</p>
+                    <h2>生徒会執行部 名刺ジェネレーター</h2>
+                    <p>名前が遠くからでも一目で認識できるよう最適化。A4・4号名刺10面で綺麗に印刷できます。</p>
+                </div>
+                <div class="size-chip">STANDARD CARD　91 × 55 mm</div>
+            </section>
+            <section class="workspace">
+                <section class="panel" aria-label="名刺の設定">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>名刺情報を編集</h3>
+                            <p>入力内容は右側のプレビューに即時反映されます。</p>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="control-row">
+                            <div class="field">
+                                <label for="layout-type">印刷する名刺の種類</label>
+                                <select id="layout-type">
+                                    <option value="1">1種類 × 10枚</option>
+                                    <option value="2">2種類 × 各5枚</option>
+                                    <option value="5">5種類 × 各2枚</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="quick-grade">学年カラーの確認</label>
+                                <select id="quick-grade">
+                                    <option value="高3">高3・青</option>
+                                    <option value="高2" selected>高2・緑</option>
+                                    <option value="高1">高1・赤</option>
+                                    <option value="中3">中3・青</option>
+                                    <option value="中2">中2・緑</option>
+                                    <option value="中1">中1・赤</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grade-preview" id="grade-preview">
+                            <div class="swatch" id="grade-swatch"></div>
+                            <div><strong id="grade-preview-title">高校2年 — GREEN</strong><span id="grade-preview-note">学年毎にテーマカラーと幾何学タグデザインが変化します。</span></div>
+                        </div>
+                        <p class="helper">名前は遠くからでも見やすいよう約1cmサイズで印刷されます。余白と文字間隔を調整し、読みやすさを高めています。</p>
+                        <div class="form-section-label" style="margin-top:17px">Member details</div>
+                        <div id="forms-container" class="forms-area" style="margin-top:14px"></div>
+                    </div>
+                    <div class="action-box">
+                        <button type="button" class="btn btn-primary" id="print-btn" onclick="printCards()">▣　印刷する（A4・10面）</button>
+                        <div class="button-row">
+                            <button type="button" class="btn btn-secondary" id="pdf-btn" onclick="generatePDF()">↓　高画質PDF</button>
+                            <button type="button" class="btn btn-quiet" id="reset-btn">↺　入力例に戻す</button>
+                        </div>
+                        <div class="status" id="status" aria-live="polite">印刷時は倍率「100%／実際のサイズ」を指定してください。</div>
+                    </div>
+                </section>
+                <section class="panel preview-panel" aria-label="A4印刷プレビュー">
+                    <div class="preview-toolbar">
+                        <div class="preview-label">
+                            <div class="preview-icon">▤</div>
+                            <div><strong>A4 印刷プレビュー</strong><span>91 × 55 mm ／ 2列 × 5段</span></div>
+                        </div>
+                        <div class="zoom-control"><label for="zoom-slider">拡大率</label><input id="zoom-slider" type="range" min="0.35" max="1" step="0.05" value="0.62"><span id="zoom-val" class="zoom-value">62%</span></div>
+                    </div>
+                    <div class="preview-stage" id="preview-stage">
+                        <div id="a4-preview" class="a4-sheet" aria-label="A4用紙の名刺印刷面"></div>
+                    </div>
+                    <div class="footer-note"><span><strong>DESIGN NOTE</strong>　名前の視認性を最大化し、洗練されたモダンタグ構造とゆとりのあるレイアウトを兼ね備えた最新フォーマット。</span><span>PRINT SETUP · A4 / PORTRAIT</span></div>
+                </section>
+            </section>
+        </main>
+        <footer class="site-footer"><span class="footer-name">横浜創英中学･高等学校 生徒会執行部</span>　·　SOEI STUDENT COUNCIL</footer>
+        <template id="card-template">
+            <article class="business-card level-high" aria-label="名刺">
+                <svg class="card-circuit" viewBox="0 0 180 140" fill="none" aria-hidden="true">
+                    <g stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                        <path class="base-line" d="M86 0V15H112V28H145V43H180 M113 0V8H132V19H158V31H180 M180 62H153V76H132V91H108V108H83V124H58" />
+                        <path class="accent-line" d="M137 0V12H151V23H168V37H180 M180 84H164V96H146V111H124V128H105V140 M69 0V24H82V38H103V51H124V65" />
+                        <path class="base-line" d="M180 51H162V62H146 M96 140V118H77V102H59V86H43" />
+                    </g>
+                    <g fill="var(--card-accent)">
+                        <circle cx="145" cy="43" r="2.6" />
+                        <circle cx="132" cy="91" r="2.2" />
+                        <circle cx="83" cy="124" r="2.1" />
+                        <circle cx="168" cy="37" r="2.2" />
+                        <circle cx="124" cy="128" r="2.4" />
+                        <circle cx="124" cy="65" r="2.1" />
+                    </g>
+                    <g stroke="#244a68" stroke-width=".8" opacity=".6">
+                        <path d="M147 48h12v8h9 M126 94h-8v8h-12 M74 104h-9v-7h-8" />
+                    </g>
+                </svg>
+                <div class="top-stripe"></div>
+                <div class="card-inner">
+                    <header class="card-header">
+                        <div class="org-lockup">
+                            <img class="card-logo" src="https://ataro-qqq.github.io/ysexe-card/ysexe-rogo.png" alt="横浜創英ロゴ">
+                            <div class="org-lines">
+                                <span class="school-name">横浜創英中学･高等学校</span>
+                                <span class="team-name">生徒会執行部 <span class="team-en">STUDENT COUNCIL</span></span>
+                            </div>
+                        </div>
+                        <div class="level-mark">SENIOR HIGH</div>
+                    </header>
+                    <section class="identity">
+                        <div class="identity-main">
+                            <div class="role"><span class="role-dot"></span><span class="display-role">執行部役員</span></div>
+                            <div class="name-en display-spell">TARO SOEI</div>
+                            <h2 class="name-ja display-name">創英 太郎</h2>
+                        </div>
+                        <div class="year-seal">
+                            <span class="year-number display-year">2</span>
+                            <span class="year-label display-level-label">GRADE</span>
+                        </div>
+                    </section>
+                    <section class="info-row">
+                        <div>
+                            <div class="info-cell"><span class="info-label">CLASS</span><span class="info-value display-class">2年3組 20番</span></div>
+                            <div class="info-cell" style="margin-top:.8mm"><span class="info-label">ID</span><span class="info-value id-value display-id">272134</span></div>
+                        </div>
+                        <div class="info-col-right">
+                            <div class="info-cell"><span class="info-label">DUTY</span><span class="info-value display-duty">創英祭担当</span></div>
+                        </div>
+                    </section>
+                    <section class="pledge">
+                        <div class="pledge-tag">PLEDGE</div>
+                        <span class="pledge-text display-pledge">声をつなぎ、学校をもっと面白く。</span>
+                    </section>
+                    <span class="card-code display-code">SOEI / SC</span>
+                </div>
+            </article>
+        </template>
+        <script src="script.js"></script>
+    </body>
+
+</html>
